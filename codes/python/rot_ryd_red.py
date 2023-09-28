@@ -1,9 +1,10 @@
-#from qutip import*
+import trace
 from stt_qtt import*
 from oprts import*
+from floquet_magnus import*
 import qutip as qt 
 import matplotlib.pyplot as plt
-import numpy as np 
+import numpy as np
 
 #this program implements the Bloch-Redfield equation for two Rydberg ions interacting with a thermal reservoir
 
@@ -40,21 +41,21 @@ for ct in constants:
     # replace constants with numerical value
     spectra_cb_numerical = spectra_cb_numerical.replace(ct, str(eval(ct)))
 
-em = 'exp(-100j*t)'
-ep = 'exp(100j*t)'
+em_itm = 'exp(-{}*1j*t)'
+ep_itm = 'exp({}*1j*t)'
 
-#expm = eval(expm)
-#expp = eval(expp)
+em = em_itm.format(omega_0)
+ep = ep_itm.format(omega_0)
 
-a_ops = [[(sp1 + sp2, sm1 + sm2), (spectra_cb_numerical, ep, em) ] ]
+a_ops = [[(sp1 + sp2, sm1 + sm2), (spectra_cb_numerical, ep, em)]]
 
 #operators for calculating the expectation value
 e_ops = [sx1, sx1 + sx2, sz1, sz1 + sz2]
 
 
 #delta = eval(delta)
-#args = {'w': omega_d}
-delta = "cos(2*t)"
+delta_itm = "cos({}*t)"
+delta = delta_itm.format(omega_d)
 
 #This part of the code initialise the Hamiltonian of the system
 Hz = sz1 + sz2
@@ -62,32 +63,45 @@ H_0 = V*(n1*n2) + bigomega*(sx1 + sx2)
 
 H_t = [H_0, [Hz, delta]]
 
+#store the states of the system
+opts = qt.Options(store_states=True)
+
 #Here we calculate the Bloch-Redfield equation for this system
-res_brme = qt.brmesolve(H_t, psi0, time, a_ops, e_ops)
+res_brme = qt.brmesolve(H_t, rho0, tspan, a_ops, e_ops, use_secular=False, options=opts)
 
 #Here are the Floquet quasi-energies
-args = {'w': omega0_d}
-Hf_t = [H_0, [Hz, 'cos(w*t)']]
+args = {'wd': omega_d}
+Hf_t = [H_0, [Hz, 'cos(wd*t)']]
 
-T = 2*np.pi/omega0_d
-f_modes_0, f_energies = qt.floquet_modes(Hf_t, T, args)
+#f_modes_0, f_energies = qt.floquet_modes(Hf_t, T, args)
 
 #print(f_energies)
 
 #Floquet-Gibbs states
-rho_fg = qt.qdiags(f_energies, 0)
-rho_fg = -beta*rho_fg
-rho_fg = rho_fg.expm() 
+Rt = 0
+rho_FG = 0
+for k in range(0, N_tot):
+    Rt += R(k+1)
 
-print(rho_fg)
+H_floquet = 1j*Rt/tau 
+
+rho_FG = -beta*H_floquet
+rho_FG = rho_FG.expm()
+rho_FG = rho_FG/np.trace(rho_FG) 
+
+states_at_times = res_brme.states
+
+tr_dist = [qt.tracedist(rho_FG, rho_t) for rho_t in states_at_times]
+
+print(len(tr_dist))
+print(rho_FG)
 
 plt.figure()
 
-plt.plot(time, res_brme.expect[0], label=r'$\sigma_x$')
-plt.plot(time, res_brme.expect[1], label=r'$\sigma^1_x + \sigma^2_x$')
-plt.plot(time, res_brme.expect[2], label=r'$\sigma_z$')
-plt.plot(time, res_brme.expect[3], label=r'$\sigma^1_z + \sigma^2_z$')
+# Add axis labels with LaTeX formatting
+plt.xlabel(r'$t$', fontsize=14)
+plt.ylabel(r'$\mathrm{tr}|\varrho_t - \varrho^{(m)}_\mathrm{FG}|$', fontsize=14)
 
-plt.legend()
+plt.plot(tspan, tr_dist)
 
 plt.show()
