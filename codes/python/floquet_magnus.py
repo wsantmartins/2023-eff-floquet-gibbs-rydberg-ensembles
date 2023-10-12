@@ -7,12 +7,19 @@ import math
 import time
 import matplotlib.pyplot as plt
 
-H1 = delta*(n1 + n2) + V*(n1*n2) + bigomega*(sx1 + sx2)
-H2 = -delta*(n1 + n2) + V*(n1*n2) + bigomega*(sx1 + sx2)
+#single-particle case: Hamiltonians for each half-period 
+H1 = delta*sp*sm + bigomega*sx
+H2 = -delta*sp*sm + bigomega*sx
+
+#two particle case: Hamiltonians for each half-period
+#H1 = delta*(n1 + n2) + V*(n1*n2) + bigomega*(sx1 + sx2)
+#H2 = -delta*(n1 + n2) + V*(n1*n2) + bigomega*(sx1 + sx2)
 
 #Hamiltonian for each half period are defined as H1 and H2
-X = -0.5j*H2/hbar 
-Y = -0.5j*H1/hbar
+#X = -0.5j*H2/hbar 
+#Y = -0.5j*H1/hbar
+X = -0.5j*H2 
+Y = -0.5j*H1
 
 #first term of the expansion
 P1 = tau*(X + Y)
