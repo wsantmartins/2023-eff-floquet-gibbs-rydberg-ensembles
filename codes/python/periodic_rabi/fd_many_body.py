@@ -113,8 +113,11 @@ plt.plot(tspan, fidlty, label = r'$\mathcal{F}|\varrho_t - \varrho^{(m)}_\mathrm
 print("--- %s seconds ---" % (time.time() - start_time))
 
 
-file_name = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_rabi\\data\\f_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}'
-np.savetxt(file_name, np.c_[tspan, fidlty])
+fid_file = f'C:\\Users\\Wilson\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_rabi\\data\\f_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}'
+td_file = f'C:\\Users\\Wilson\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_rabi\\data\\td_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}'
+np.savetxt(fid_file, np.c_[tspan, fidlty])
+np.savetxt(td_file, np.c_[tspan, tr_dist])
+
 
 plt.show()
 

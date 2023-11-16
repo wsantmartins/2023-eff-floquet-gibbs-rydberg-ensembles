@@ -11,13 +11,12 @@ exp = np.exp
 
 
 #temperature
-T = 1
-beta = 1.0/T
+beta = 10
 
 #Rabi frequency and Rydberg interaction
 #Everything is in units of delta
 bigomega = 1
-V = 1
+V = -2
 delta = 1
 
 #decay rate and dissipation constant
@@ -25,11 +24,11 @@ gamma = 0.1
 kappa0 = gamma/(np.sqrt(1 + 4.0*bigomega)**3)
 
 #driving frequency and laser frequency
-omega_d = 3
+omega_d = 6
 omega_0 = 100
 tau = 2.0*np.pi/omega_d
 
-N = 3
+N = 2
 Nf = 3
 
 #single ion case: initial states
