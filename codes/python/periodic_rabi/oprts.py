@@ -52,6 +52,6 @@ else:
     for i in range(N - 1):
         snn += sn_list[i]*sn_list[i+1]
 
-#time-independent part of the Hamiltonian for time dependent Rabi freq.
+#time-independent part of the Hamiltonian for time dependent detuning
 H0 = delta*mag + V*snn
-Hv = magx
+Hv = magx 

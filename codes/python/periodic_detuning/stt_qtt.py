@@ -21,12 +21,12 @@ gamma = 0.1
 kappa0 = gamma/(np.sqrt(1 + 4.0*bigomega)**3)
 
 #driving frequency and laser frequency
-omega_d = 12
+omega_d = 8
 omega_0 = 100
 tau = 2.0*np.pi/omega_d
 
-N = 3
-Nf = 3
+N = 2
+Nf = 2
 
 #single ion case: initial states
 state_list = [qt.basis(2, 0)]*N

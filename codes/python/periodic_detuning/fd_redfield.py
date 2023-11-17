@@ -12,7 +12,7 @@ start_time = time.time()
 # initial state
 
 tmin = 0.0
-tmax = 400.0
+tmax = 1000.0
 nsteps = 100000
 
 tspan = np.linspace(tmin, tmax, nsteps)
