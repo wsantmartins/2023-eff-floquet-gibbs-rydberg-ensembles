@@ -6,11 +6,7 @@ import numpy as np
 import math
 import time
 import matplotlib.pyplot as plt
-
-#Hamiltonians for each half-period for delta variable
-Hp = bigomega*Hv + H0
-Hm = H0
-
+from fd_antiblockade import*
 
 #Hamiltonian for each half period are defined as H1 and H2
 X = -0.5j*Hp

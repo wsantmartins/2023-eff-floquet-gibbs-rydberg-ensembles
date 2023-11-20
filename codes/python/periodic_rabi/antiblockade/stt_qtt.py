@@ -21,8 +21,7 @@ beta = 10
 #Rabi frequency and Rydberg interaction
 #Everything is in units of delta
 bigomega = 1
-V = 1
-delta = -2
+V = 2
 
 #decay rate and dissipation constant
 gamma = 0.1
