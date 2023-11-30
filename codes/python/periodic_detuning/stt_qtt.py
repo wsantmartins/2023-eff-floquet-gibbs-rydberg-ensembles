@@ -6,6 +6,14 @@ import numpy as np
 cos = np.cos
 exp = np.exp
 
+#setting initial conditions 
+# initial state
+
+tmin = 0.0
+tmax = 500.0
+nsteps = 100000
+
+tspan = np.linspace(tmin, tmax, nsteps)
 
 #temperature 
 beta = 10
@@ -13,7 +21,7 @@ beta = 10
 #Rabi frequency and Rydberg interaction
 #Everything is in units of delta
 bigomega = 1
-V = 1
+V = -2
 delta = 1
 
 #decay rate and dissipation constant

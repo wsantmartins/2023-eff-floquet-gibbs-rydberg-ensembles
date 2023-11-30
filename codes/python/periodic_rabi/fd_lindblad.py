@@ -56,14 +56,14 @@ fidlty = [qt.fidelity(rho_FG, rho_t) for rho_t in states_at_times]
 #plt.plot(tspan, magy_t)
 #plt.plot(tspan, magz_t)
 
-plt.plot(tspan, tr_dist, label = r'$\mathrm{tr}|\varrho_t - \varrho^{(m)}_\mathrm{FG}|$', color ='#b2182b')
-plt.plot(tspan, fidlty, label = r'$\mathcal{F}|\varrho_t - \varrho^{(m)}_\mathrm{FG}|$', color ='#2166ac')
-#plt.plot(tspan, magx_FG)
-#plt.plot(tspan, magx_t)
-#plt.plot(tspan, magy_FG)
-#plt.plot(tspan, magy_t)
-#plt.plot(tspan, magz_FG)
-#plt.plot(tspan, magz_t)
+#plt.plot(tspan, tr_dist, label = r'$\mathrm{tr}|\varrho_t - \varrho^{(m)}_\mathrm{FG}|$', color ='#b2182b') #red
+#plt.plot(tspan, fidlty, label = r'$\mathcal{F}|\varrho_t - \varrho^{(m)}_\mathrm{FG}|$', color ='#2166ac') #blue
+plt.plot(tspan, magx_FG)
+plt.plot(tspan, magx_t)
+plt.plot(tspan, magy_FG)
+plt.plot(tspan, magy_t)
+plt.plot(tspan, magz_FG)
+plt.plot(tspan, magz_t)
 
 print("--- %s seconds ---" % (time.time() - start_time))
 

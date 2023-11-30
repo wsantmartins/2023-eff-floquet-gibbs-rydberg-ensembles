@@ -10,7 +10,7 @@ exp = np.exp
 # initial state
 
 tmin = 0.0
-tmax = 50.0
+tmax = 100.0
 nsteps = 100000
 
 tspan = np.linspace(tmin, tmax, nsteps)
@@ -22,7 +22,7 @@ beta = 10
 #Everything is in units of delta
 bigomega = 1
 V = 1
-delta = -2
+delta = -0.5
 
 #decay rate and dissipation constant
 gamma = 0.1
@@ -34,7 +34,7 @@ omega_0 = 100
 tau = 2.0*np.pi/omega_d
 
 N = 2
-Nf = 2
+Nf = 3
 
 #single ion case: initial states
 state_list = [qt.basis(2, 0)]*N

@@ -8,15 +8,6 @@ from floquet_magnus import*
 
 start_time = time.time()
 
-#setting initial conditions 
-# initial state
-
-tmin = 0.0
-tmax = 1000.0
-nsteps = 100000
-
-tspan = np.linspace(tmin, tmax, nsteps)
-
 #This program implements the Bloch-Redfield equation for a many-body Rydberg ions interacting with a thermal reservoir. In each step we have defined operators for a single and two particles 
 
 #General J factor
@@ -129,14 +120,14 @@ plt.plot(tspan, fidlty, label = r'$\mathcal{F}|\varrho_t - \varrho^{(m)}_\mathrm
 print("--- %s seconds ---" % (time.time() - start_time))
 
 
-fid_file = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\f_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}'
-td_file = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\td_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}'
-magxt = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\magxt_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}'
-magxfg = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\magxfg_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}'
-magyt = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\magyt_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}'
-magyfg = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\magyfg_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}'
-magzt = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\magzt_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}'
-magzfg = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\magzfg_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}'
+fid_file = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_f_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}'
+td_file = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_td_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}'
+magxt = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magxt_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}'
+magxfg = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magxfg_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}'
+magyt = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magyt_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}'
+magyfg = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magyfg_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}'
+magzt = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magzt_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}'
+magzfg = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magzfg_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}'
 
 np.savetxt(fid_file, np.c_[tspan, fidlty])
 np.savetxt(td_file, np.c_[tspan, tr_dist])

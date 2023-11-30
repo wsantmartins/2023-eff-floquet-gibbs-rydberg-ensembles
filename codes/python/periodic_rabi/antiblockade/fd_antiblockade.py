@@ -8,7 +8,7 @@ from stt_qtt import*
 
 start_time = time.time()
 
-delta_values = [-8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6]
+delta_values = [-2.5, -2.0, -1.5, -1.0, -0.5, 0, 0.5, 1.0, 1.5, 2.0, 2.5]
 fidelity_ss = []
 td_ss = []
 
