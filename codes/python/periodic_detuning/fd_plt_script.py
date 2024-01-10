@@ -4,13 +4,12 @@ from scipy.signal import hilbert
 
 # Specify the paths to your data files with double backslashes
 data_paths = [
-    'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\interaction_effect\\data\\ll_f_N=2_w=8_Nf=2'
-    #'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magxt_N=2_w=8_w0=100_Nf=2_V=-2',
-    #'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magxfg_N=2_w=8_w0=100_Nf=2_V=-2',
-    #'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magyt_N=2_w=8_w0=100_Nf=2_V=-2',
-    #'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magyfg_N=2_w=8_w0=100_Nf=2_V=-2',
-    #'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magzt_N=2_w=8_w0=100_Nf=2_V=-2',
-    #'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magzfg_N=2_w=8_w0=100_Nf=2_V=-2',
+    'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magxt_N=2_w=8_w0=100_Nf=2_V=-2',
+    'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magxfg_N=2_w=8_w0=100_Nf=2_V=-2',
+    'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magyt_N=2_w=8_w0=100_Nf=2_V=-2',
+    'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magyfg_N=2_w=8_w0=100_Nf=2_V=-2',
+    'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magzt_N=2_w=8_w0=100_Nf=2_V=-2',
+    'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magzfg_N=2_w=8_w0=100_Nf=2_V=-2',
 ]
 
 # Define the custom color
@@ -69,8 +68,8 @@ plt.gca().spines['right'].set_linewidth(1.5)  # Right border
 plt.tick_params(axis='both', which='both', width=1.5, labelsize=24)
 
 # Plot the data for each dataset
-plt.xlim(-4, 2.5)  # Set x-axis limits
-plt.ylim(0, 1)   # Set y-axis limits
+plt.xlim(0, 500)  # Set x-axis limits
+plt.ylim(-1, 1)   # Set y-axis limits
 
 #plt.yscale('log')
 
@@ -89,7 +88,7 @@ for i, (t_values, x_values) in enumerate(data_sets):
     #plt.plot(t_values, envelope, linewidth=1.5, color=color)
 
 # Save the figure as a PDF file
-plt.savefig('fd_v_variable.pdf', format='pdf')
+#plt.savefig('fd_v_variable.pdf', format='pdf')
 
 # Display the plot
 plt.show()
