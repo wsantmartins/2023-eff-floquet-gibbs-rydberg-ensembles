@@ -32,7 +32,8 @@ def Q(i, j):
     else:
         Qsum = 0.0
         for k in range(1, i - j + 2):
-            Qsum += Q(k, 1)*Q(i - j,k - 1)
+     #       Qsum += Q(k, 1)*Q(i - j,k - 1)
+            Qsum += Q(k, 1)*Q(i - k,j - 1)
     return Qsum
 
 def R(i):

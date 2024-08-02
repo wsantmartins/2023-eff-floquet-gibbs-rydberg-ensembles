@@ -10,27 +10,27 @@ exp = np.exp
 # initial state
 
 tmin = 0.0
-tmax = 1000.0
-nsteps = 100000
+tmax = 5e5
+nsteps = 1000000
 
 tspan = np.linspace(tmin, tmax, nsteps)
 
 #temperature 
-beta = 10
+beta = 20
 
 #Rabi frequency and Rydberg interaction
 #Everything is in units of delta
-bigomega = 1
-V = 1
-delta = 1
+bigomega = 0.1
+V = 0.1
+delta = 0.1
 
 #decay rate and dissipation constant
-gamma = 0.1
-kappa0 = gamma/(np.sqrt(1 + 4.0*bigomega)**3)
+
+kappa0 = 0.02
 
 #driving frequency and laser frequency
-omega_d = 3
-omega_0 = 100
+omega_d = 1
+omega_0 = 10
 tau = 2.0*np.pi/omega_d
 
 N = 2

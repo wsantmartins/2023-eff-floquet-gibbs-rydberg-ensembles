@@ -50,7 +50,7 @@ ep_itm = 'exp({}*1j*t)'
 em = em_itm.format(omega_0)
 ep = ep_itm.format(omega_0)
 
-#single particle case: operators and spectral density
+#operators and spectral density
 a_ops = [[(magp, magm), (spectra_cb_numerical, ep, em)]]
 
 
@@ -58,19 +58,20 @@ a_ops = [[(magp, magm), (spectra_cb_numerical, ep, em)]]
 e_ops = [magx, magy, magz]
 
 
-#periodic detuning
-sw_itm = "0.5 + 0.5*np.sign(np.sin({}*t))"
+# Periodic detuning with delta
+sw_itm = "{} * (0.5 + 0.5 * np.sign(np.sin({} * t)))"
 
-sw = sw_itm.format(omega_d)
+# Format the string with omega_d and delta
+sw = sw_itm.format(delta, omega_d)
 
-#two particle case: Hamiltonian
+#Hamiltonian 
 Ht = [H0, [Hv, sw]]
 
 #store the states of the system
 opts = qt.Options(store_states=True)
 
 #Here we calculate the Bloch-Redfield equation for this system
-res_brme = qt.brmesolve(Ht, rho0, tspan, a_ops, e_ops, use_secular=True, options=opts)
+res_brme = qt.brmesolve(Ht, rho0, tspan, a_ops, e_ops, use_secular=False, options=opts)
 
 #Floquet-Gibbs states
 Rt = 0
@@ -106,28 +107,28 @@ plt.figure()
 
 # Add axis labels with LaTeX formatting
 plt.xlabel(r'$t$', fontsize=14)
-#plt.ylabel(r'$\mathrm{tr}|\varrho_t - \varrho^{(m)}_\mathrm{FG}|$', fontsize=14)
+plt.ylabel(r'$\mathrm{tr}|\varrho_t - \varrho^{(m)}_\mathrm{FG}|$', fontsize=14)
 
-plt.plot(tspan, tr_dist, label = r'$\mathrm{tr}|\varrho_t - \varrho^{(m)}_\mathrm{FG}|$', color ='#b2182b')
-plt.plot(tspan, fidlty, label = r'$\mathcal{F}|\varrho_t - \varrho^{(m)}_\mathrm{FG}|$', color ='#2166ac')
-#plt.plot(tspan, magx_FG)
-#plt.plot(tspan, magx_t)
-#plt.plot(tspan, magy_FG)
-#plt.plot(tspan, magy_t)
-#plt.plot(tspan, magz_FG)
-#plt.plot(tspan, magz_t)
+#red
+# plt.plot(tspan, tr_dist, label = r'$\mathrm{tr}|\varrho_t - \varrho^{(m)}_\mathrm{FG}|$', color ='#b2182b')
+# #blue
+# plt.plot(tspan, fidlty, label = r'$\mathcal{F}|\varrho_t - \varrho^{(m)}_\mathrm{FG}|$', color ='#2166ac')
+
+plt.plot(tspan,  magy_t)
+plt.plot(tspan,  magy_FG)
+
 
 print("--- %s seconds ---" % (time.time() - start_time))
 
 
-fid_file = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_f_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}'
-td_file = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_td_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}'
-magxt = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magxt_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}'
-magxfg = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magxfg_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}'
-magyt = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magyt_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}'
-magyfg = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magyfg_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}'
-magzt = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magzt_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}'
-magzfg = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magzfg_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}'
+fid_file = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_f_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}_beta={beta}'
+td_file = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_td_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}_beta={beta}'
+magxt = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magxt_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}_beta={beta}'
+magxfg = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magxfg_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}_beta={beta}'
+magyt = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magyt_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}_beta={beta}'
+magyfg = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magyfg_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}_beta={beta}'
+magzt = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magzt_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}_beta={beta}'
+magzfg = f'C:\\Users\\wsant\\OneDrive\\Dokumente\\2023ryd_eng_repo\\codes\\python\\periodic_detuning\\data\\red_magzfg_N={N}_w={omega_d}_w0={omega_0}_Nf={Nf}_V={V}_beta={beta}'
 
 np.savetxt(fid_file, np.c_[tspan, fidlty])
 np.savetxt(td_file, np.c_[tspan, tr_dist])
